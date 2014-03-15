@@ -1,0 +1,84 @@
+
+uwsgi emperor
+lives at /etc/init/uwsgi.conf
+
+#######################################################
+# uWSGI - manage uWSGI application server
+#
+
+description		"uWSGI Emperor"
+
+start on runlevel [2345]
+stop on runlevel [06]
+
+respawn
+
+env LOGTO=/var/log/uwsgi.log
+env BINPATH=/usr/bin/uwsgi
+
+exec $BINPATH --emperor /home/grant/apps/vassals/ --logto $LOGTO
+#######################################################
+
+
+uwsgi options
+http://uwsgi-docs.readthedocs.org/en/latest/Options.html
+
+
+
+tutorials
+http://eshlox.net/en/2012/09/11/nginx-uwsgi-virtualenv-and-django-ubuntu-1204/
+http://bartek.im/blog/2012/07/08/simplicity-nginx-uwsgi-deployment.html
+http://uwsgi.readthedocs.org/en/latest/tutorials/Django_and_nginx.html
+
+nginx config
+/etc/nginx/sites-available
+
+create symblinks to enable
+cd /etc/nginx/sites-enabled
+ln -s ../sites-avaliable/<nginx conf file>
+
+########################################################
+server {
+	listen 80;
+	server_name www.example.com
+	access_log /var/log/nginx/<name>.log
+	error_log /varl/log/nginx/<name>.log
+
+	location / {
+		uwsgi_pass	unix://tmp/www.example.com.sock;
+		include		uwsgi_params;
+	}
+
+	location /media/ {
+		alias /home/......./project/media/;
+	}
+
+	location /static/ {
+		alias /home/......./project/static/;
+	}
+}
+#######################################################
+
+uwsgi config:
+/etc/uwsgi/apps-available/<name>.ini
+
+#######################################################
+[uwsgi]
+vhost = true
+plugins = python
+socket = /tmp/<name>.sock
+master = true
+enable-threads = true
+processes = 2
+wsgi-file = /home/.....project/project/wsgi.py
+virtualenv = /home/....projects/<name>
+chdir = /home/.......project/
+touch-reload = /home/......project/reload
+####################################################
+
+enable
+cd /etc/uwsgi/apps-enabled/
+ls -s ../apps-availablle/<name>.ini
+
+sudo service nginx start
+sudo service uwsgi start
