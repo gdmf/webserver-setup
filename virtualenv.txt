@@ -1,0 +1,33 @@
+# docs: http://www.virtualenv.org/en/latest/virtualenv.html
+# http://virtualenvwrapper.readthedocs.org/en/latest/index.html
+
+# worth reading: http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/
+# site-wide, only need to install pip, virtualenv
+
+# install virtualenv
+$ sudo pip install virtualenv
+
+# cd into root of project directory
+$ cd ~/code/myproject
+
+# virtualenv env creates bin/include/lib subdirectories
+$ virtualenv env
+
+# local python shell
+$ env/bin/python
+
+# local pip
+$ env/bin/pip
+
+# activate environment
+$ which python
+/usr/bin/python
+
+$ source env/bin/activate
+$ which python
+.../myproject/env/bin/python
+
+$ deactivate
+
+# remove env
+$ rmvirtualenv <name>
