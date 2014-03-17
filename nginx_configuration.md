@@ -25,13 +25,13 @@ Install from new repo (keep current config files)
 
 Configuration
 -------------
+Conf files are stored here by default:
+* /etc/nginx/nginx.conf
+* /etc/nginx/sites-available
 
-nginx config
-/etc/nginx/sites-available
-
-create symblinks to enable
-cd /etc/nginx/sites-enabled
-ln -s ../sites-avaliable/<nginx conf file>
+Create symblinks to enable
+    cd /etc/nginx/sites-enabled
+    ln -s ../sites-avaliable/<nginx conf file>
 
 ########################################################
 server {
