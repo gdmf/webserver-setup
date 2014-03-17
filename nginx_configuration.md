@@ -18,10 +18,13 @@ Remove current nginx install
 
     $ sudo apt-get remove nginx-full nginx-common
 
-# install from new repo (keep current config files)
-$ sudo apt-get install nginx
-$ nginx -v
-nginx version: nginx/1.4.6
+Install from new repo (keep current config files)
+    $ sudo apt-get install nginx
+    $ nginx -v
+    nginx version: nginx/1.4.6
+
+Configuration
+-------------
 
 nginx config
 /etc/nginx/sites-available
