@@ -52,7 +52,7 @@ http {
     error_log /var/log/nginx/error.log;
     ...
     include /etc/nginx/conf.d/*.conf;       # currently empty
-    **include /etc/nginx/sites-enabled/*;**
+    include /etc/nginx/sites-enabled/*;
 }
 ```
 
@@ -68,7 +68,7 @@ server {
     location / {
         try_files $uri.html $uri $uri/ =404;
     }
-    **include /path/to/project/conf/<app-x>.conf;**
+    include /path/to/project/conf/<app-x>.conf;
 }
 ```
 
@@ -76,12 +76,14 @@ Location context
 ----------------
 I want to serve multiple webapps using the same server. One solution is to use subdomains (webapp1.mysite.com, webapp2.mysite.com, etc.). Another solution is to use subfolders (mysite.com/webapp1, mysite.com/webapp2, etc.). The following location block shows how to do the latter. 
 
-    location /<app-x>/ {
-        include uwsgi_params;
-        uwsgi_param SCRIPT_NAME /<app-x>;
-        uwsgi_modifier1 30;
-        uwsgi_pass unix://tmp/<app-x>.sock;
-    }
+```Nginx
+location /<app-x>/ {
+    include uwsgi_params;
+    uwsgi_param SCRIPT_NAME /<app-x>;
+    uwsgi_modifier1 30;
+    uwsgi_pass unix://tmp/<app-x>.sock;
+}
+```
 
 From http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#dynamic-apps:
 >...SCRIPT\_NAME is the variable used to select a specific application. The uwsgi\_modifer1 30 option sets the uWSGI modifier UWSGI_MODIFIER_MANAGE_PATH_INFO. This per-request modifier instructs the uWSGI server to rewrite the PATH_INFO value removing the SCRIPT_NAME from it.
