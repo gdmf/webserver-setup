@@ -39,36 +39,38 @@ http context
 ------------
 Configured in /etc/nginx/nginx.conf. Server contexts can be store as a .conf file in sites-enabled, and incorporated through an include statement.
 
-    user www-data;
-    worker_processes 4;
-    pid /var/run/nginx.pid;
-    events {
-        worker_connections 768;
-    }
-    http {
-        ...
-        access_log /var/log/nginx/access.log;
-        error_log /var/log/nginx/error.log;
-        ...
-        include /etc/nginx/conf.d/*.conf;       # currently empty
-        **include /etc/nginx/sites-enabled/*;**
-    }
-
+```Nginx
+user www-data;
+worker_processes 4;
+pid /var/run/nginx.pid;
+events {
+    worker_connections 768;
+}
+http {
+    ...
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+    ...
+    include /etc/nginx/conf.d/*.conf;       # currently empty
+    **include /etc/nginx/sites-enabled/*;**
+}
+```
 
 Server context
 --------------
 Configured in /etc/nginx/sites-enabled/apps.conf. Additional location contexts can be stored as .conf files in project folders, and incorporated through include statements.
 
-    server {
-        listen 80;
-        server_name 50.56.184.237;
-        root /home/grant/nginx/www;
-        location / {
-            try_files $uri.html $uri $uri/ =404;
-        }
-        **include /path/to/project/conf/<app-x>.conf;**
+```Nginx
+server {
+    listen 80;
+    server_name 50.56.184.237;
+    root /home/grant/nginx/www;
+    location / {
+        try_files $uri.html $uri $uri/ =404;
     }
-
+    **include /path/to/project/conf/<app-x>.conf;**
+}
+```
 
 Location context
 ----------------
@@ -81,7 +83,7 @@ I want to serve multiple webapps using the same server. One solution is to use s
         uwsgi_pass unix://tmp/<app-x>.sock;
     }
 
-From http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#VirtualHosting:
+From http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#dynamic-apps:
 >...SCRIPT\_NAME is the variable used to select a specific application. The uwsgi\_modifer1 30 option sets the uWSGI modifier UWSGI_MODIFIER_MANAGE_PATH_INFO. This per-request modifier instructs the uWSGI server to rewrite the PATH_INFO value removing the SCRIPT_NAME from it.
 
 Restarting the service:
