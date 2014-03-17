@@ -1,14 +1,21 @@
 Updating nginx
 --------------
 Current version:
+
     $ nginx -v
     nginx version: nginx/1.1.19
+
 Add official nginx repo
+
     $ sudo nano /etc/apt/sources.list
     deb http://nginx.org/packages/ubuntu/ precise nginx
+
 Add public key for package from ubuntu server
+
     $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ABF5BD827BD9BF62
+
 Remove current nginx install
+
     $ sudo apt-get remove nginx-full nginx-common
 
 # install from new repo (keep current config files)
