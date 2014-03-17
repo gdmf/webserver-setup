@@ -47,11 +47,8 @@ events {
     worker_connections 768;
 }
 http {
-    ...
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log;
-    ...
-    include /etc/nginx/conf.d/*.conf;       # currently empty
     include /etc/nginx/sites-enabled/*;
 }
 ```
@@ -85,7 +82,7 @@ location /<app-x>/ {
 }
 ```
 
-From http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#dynamic-apps:
+From the [uwsgi docs] http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#dynamic-apps
 >...SCRIPT\_NAME is the variable used to select a specific application. The uwsgi\_modifer1 30 option sets the uWSGI modifier UWSGI_MODIFIER_MANAGE_PATH_INFO. This per-request modifier instructs the uWSGI server to rewrite the PATH_INFO value removing the SCRIPT_NAME from it.
 
 Restarting the service:
