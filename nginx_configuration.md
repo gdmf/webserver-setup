@@ -1,4 +1,4 @@
-# Updating nginx
+## Updating nginx
 
     $ nginx -v
     nginx version: nginx/1.1.19
