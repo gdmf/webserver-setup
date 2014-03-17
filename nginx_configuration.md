@@ -1,7 +1,7 @@
 # Updating nginx
 
     $ nginx -v
-nginx version: nginx/1.1.19
+    nginx version: nginx/1.1.19
 
 # add official nginx repo
 $ sudo nano /etc/apt/sources.list
