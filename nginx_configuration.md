@@ -23,58 +23,39 @@ Install from new repo (keep current config files)
     $ nginx -v
     nginx version: nginx/1.4.6
 
-Configuration
+My Configuration
 -------------
 Conf files are stored here by default:
 * /etc/nginx/nginx.conf
-* /etc/nginx/sites-available
+* /etc/nginx/sites-available/*.conf
 
-Create symblinks to enable
+Create symlinks to enable
     cd /etc/nginx/sites-enabled
     ln -s ../sites-avaliable/<nginx conf file>
 
-########################################################
-server {
-	listen 80;
-	server_name www.example.com
-	access_log /var/log/nginx/<name>.log
-	error_log /varl/log/nginx/<name>.log
 
-	location / {
-		uwsgi_pass	unix://tmp/www.example.com.sock;
-		include		uwsgi_params;
-	}
 
-	location /media/ {
-		alias /home/......./project/media/;
-	}
+Additional conf files stored in project folder, and incorporated through include statements.
 
-	location /static/ {
-		alias /home/......./project/static/;
-	}
-}
-#######################################################
+http context in /etc/nginx/nginx.conf:
+    user www-data;
+    worker_processes 4;
+    pid /var/run/nginx.pid;
 
-uwsgi config:
-/etc/uwsgi/apps-available/<name>.ini
+    events {
+        worker_connections 768;
+    }
 
-#######################################################
-[uwsgi]
-vhost = true
-plugins = python
-socket = /tmp/<name>.sock
-master = true
-enable-threads = true
-processes = 2
-wsgi-file = /home/.....project/project/wsgi.py
-virtualenv = /home/....projects/<name>
-chdir = /home/.......project/
-touch-reload = /home/......project/reload
-####################################################
+    http {
+        ...
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
 
-enable
-cd /etc/uwsgi/apps-enabled/
-ls -s ../apps-availablle/<name>.ini
+        include /etc/nginx/conf.d/*.conf;       # currently empty
+        include /etc/nginx/sites-enabled/*;
+    }
+
+
+
 
 sudo service nginx start
-sudo service uwsgi start
