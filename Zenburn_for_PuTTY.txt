@@ -1,4 +1,6 @@
 Zenburn for PuTTY
+-----------------
+
 Default Foreground - 255/255/255
 Default Background - 51/51/51
 ANSI Black - 77/77/77

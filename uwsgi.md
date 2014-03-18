@@ -1,4 +1,5 @@
 Annotated uWSGI .ini file
+-------------------------
 
 ```ini
 ; uwsgi.ini template (<var> changes per project)
