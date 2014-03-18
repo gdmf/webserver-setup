@@ -15,4 +15,4 @@ ANSI White - 245/222/179
 
 Font - Consolas, 10-point
 
-src: http://looselytyped.blogspot.com/2013/02/zenburn-pleasant-color-scheme-for-putty.html
+[Source:](http://looselytyped.blogspot.com/2013/02/zenburn-pleasant-color-scheme-for-putty.html)
