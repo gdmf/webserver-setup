@@ -61,7 +61,7 @@ Configured in /etc/nginx/sites-enabled/apps.conf. Additional location contexts c
 server {
     listen 80;
     server_name 50.56.184.237;
-    root /home/grant/nginx/www;
+    root /home/<user>/nginx/www;
     location / {
         try_files $uri.html $uri $uri/ =404;
     }
