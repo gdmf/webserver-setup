@@ -24,8 +24,7 @@ This will search all directories under 'projects' for a 'conf' directory contain
 [uWSGI options:](http://uwsgi-docs.readthedocs.org/en/latest/Options.html)
 
 Other configuration locations:
-
-*/etc/uwsgi/apps-enabled     #currently empty
-*/etc/uwsgi/apps-available     #currently empty
-*unused: /etc/uwsgi/vassals/vassal.ini   #test ini
+* /etc/uwsgi/apps-enabled     #currently empty
+* /etc/uwsgi/apps-available     #currently empty
+* unused: /etc/uwsgi/vassals/vassal.ini   #test ini
 
