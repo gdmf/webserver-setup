@@ -15,7 +15,7 @@ processes = 4
 vacuum = true
 
 ; specify unix socket on the filesystem
-socket = /tmp/<app2>.socket
+socket = /tmp/<app2>.sock
 ; ALT: bind on a tcp socket
 ; socket = 127.0.0.1:3031
 
