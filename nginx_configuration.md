@@ -73,7 +73,7 @@ server {
 
 Location context
 ----------------
-I want to serve multiple webapps using the same server. This template assumes the use of subdomains (a.mysite.com, b.mysite.com, etc.). 
+I want to serve multiple webapps using the same server. This template assumes the use of subdomains (a.mysite.com, b.mysite.com, etc.). Use the template to create /home/[user]/projects/[project]/conf/nginx.conf: 
 
 ```Nginx
 server {
