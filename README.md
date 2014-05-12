@@ -13,8 +13,8 @@ Nginx handles incoming requests, and hands them off to uwsgi. uWSGI then feeds t
 The workflow
 ------------
 1. Install the webapp (Django or Flask project)
-2. Using the nginx location block template, customize it for a subdomain and a socket, and add to ~/projects/<project>/conf/, and incorporate using an include directive in /etc/nginx/sites-enabled/apps.conf
-3. Using the uwsgi.ini template, customize for the webapp, and add to ~/projects/<project>/conf/
+2. Using the nginx location block template, customize it for a subdomain and a socket, and add to ~/projects/[project]/conf/, and incorporate using an include directive in /etc/nginx/sites-enabled/apps.conf
+3. Using the uwsgi.ini template, customize for the webapp, and add to ~/projects/[project]/conf/
 4. Reload uwsgi
 
 
