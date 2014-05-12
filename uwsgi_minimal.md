@@ -10,6 +10,7 @@ uid = www-data
 gid = www-data
 virtualenv = /home/<user>/projects/project/env/
 chdir = /home/<user>/projects/<project>/<app>
+plugins = python
 module = <app>.wsgi:application
 env = DJANGO_SETTINGS_MODULE=<app>.settings
 ```
