@@ -42,6 +42,7 @@ Run the collectstatic management command
 Assuming you have set an alias, nginx will now serve the static files, e.g.:
 
   http://example.com/media/286.jpg
+
   http://example.com/static/test.css
 
 Security settings (in settings.py)
