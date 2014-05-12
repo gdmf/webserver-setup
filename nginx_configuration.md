@@ -58,6 +58,9 @@ Server context
 Configured in /etc/nginx/sites-enabled/apps.conf. Additional location contexts can be stored as .conf files in project folders, and incorporated through include statements.
 
 ```Nginx
+# insert include here
+include /home/<user>/projects/<project>/conf/nginx.conf;
+
 server {
     listen 80;
     server_name 50.56.184.237;
@@ -65,25 +68,33 @@ server {
     location / {
         try_files $uri.html $uri $uri/ =404;
     }
-    include /path/to/project/conf/<app-x>.conf;
 }
 ```
 
 Location context
 ----------------
-I want to serve multiple webapps using the same server. One solution is to use subdomains (webapp1.mysite.com, webapp2.mysite.com, etc.). Another solution is to use subfolders (mysite.com/webapp1, mysite.com/webapp2, etc.). The following location block shows how to do the latter. 
+I want to serve multiple webapps using the same server. This template assumes the use of subdomains (a.mysite.com, b.mysite.com, etc.). 
 
 ```Nginx
-location /<app-x>/ {
-    include uwsgi_params;
-    uwsgi_param SCRIPT_NAME /<app-x>;
-    uwsgi_modifier1 30;
-    uwsgi_pass unix://tmp/<app-x>.sock;
+server {
+    listen 80;
+    server_name b.mysite.com, b.www.gdmf.me;
+
+    # Django media/static
+    location /media {
+        alias /home/<user>/projects/<project>/mysite/media;
+    }
+
+    location /static {
+        alias /home/<user>/projects/<project>/mysite/static;
+    }
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix://tmp/<project>.sock;
+    }
 }
 ```
-
-From the [uwsgi docs](http://uwsgi-docs.readthedocs.org/en/latest/Nginx.html#dynamic-apps):
->...SCRIPT\_NAME is the variable used to select a specific application. The uwsgi\_modifer1 30 option sets the uWSGI modifier UWSGI_MODIFIER_MANAGE_PATH_INFO. This per-request modifier instructs the uWSGI server to rewrite the PATH_INFO value removing the SCRIPT_NAME from it.
 
 Restarting the service:
 
