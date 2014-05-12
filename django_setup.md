@@ -40,8 +40,9 @@ Run the collectstatic management command
     $ python manage.py collectstatic
 
 Assuming you have set an alias, nginx will now serve the static files, e.g.:
-  http://b.gdmf.me/media/286.jpg
-  http://b.gdmf.me/static/test.css
+
+  http://example.com/media/286.jpg
+  http://example.com/static/test.css
 
 Security settings (in settings.py)
     
