@@ -26,7 +26,7 @@ Be sure to add the include statement for nginx.conf into /etc/nginx/sites-enable
 
 Create folders for media and static
 
-    $ cd /home/<user>/projects/<project>
+    $ cd /home/<user>/projects/<project>/<project>
     $ mkdir media
     $ mkdir static
 
